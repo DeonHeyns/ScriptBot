@@ -13,7 +13,7 @@
 
 using System.ComponentModel.Composition;
 
-namespace SkypeBot.Common
+namespace SkypeBot.Common.Commands
 {
     [SkypeBotExport]
     [ExportMetadata("Command", CommandParameters.Empty)]

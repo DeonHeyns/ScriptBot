@@ -17,5 +17,8 @@ namespace SkypeBot.Common
     {
         public const string Empty = "";
         public const string Scriptcs = "scriptcs";
+        public const string Date = "date";
+        public const string Time = "time";
+        public const string DateTime = "datetime";
     }
 }

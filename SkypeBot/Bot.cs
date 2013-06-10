@@ -20,6 +20,7 @@ using System.Text;
 using SKYPE4COMLib;
 using SkypeBot.Common;
 using System.IO;
+using SkypeBot.Common.Commands;
 
 namespace SkypeBot
 {

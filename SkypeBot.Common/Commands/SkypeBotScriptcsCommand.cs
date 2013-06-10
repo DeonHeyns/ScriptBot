@@ -19,7 +19,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace SkypeBot.Common
+namespace SkypeBot.Common.Commands
 {
     [SkypeBotExport]
     [ExportMetadata("Command", CommandParameters.Scriptcs)]
