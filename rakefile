@@ -1,0 +1,32 @@
+
+require 'rubygems'
+require 'albacore'
+require 'version_bumper'
+
+config = ENV["config"] || "debug"
+
+def env_buildversion
+	bumper_version.to_s
+end
+
+task :default => [:compile, :test, :bump_build_number]
+
+desc 'Compile the solution'
+msbuild :compile do |msb|
+	msb.properties = { :configuration => config }
+    msb.targets = [ :Clean, :Build ]
+    msb.solution = 'SkypeBot.sln'
+end
+
+desc "NUnit Test Runner"
+nunit :test do |nunit|
+	nunit.options '/framework v4.0.30319'
+	nunit.command = "tools/nunit-console.exe"
+	nunit.assemblies "SkypeBot.Tests/bin/"+ config  +"/SkypeBot.Tests.dll"
+end
+
+desc "Increments the major version number for the project"
+task :bump_build_number do
+	bumper_version.bump_major
+	bumper_version.write('version')
+end

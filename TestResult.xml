@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Prj\SkypeBot\SkypeBot.Tests\bin\debug\SkypeBot.Tests.dll" total="3" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2013-06-10" time="18:13:31">
+  <environment nunit-version="2.6.1.12217" clr-version="2.0.50727.6400" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\Prj\SkypeBot" machine-name="DEON-WIN" user="DeonHeyns" user-domain="DEON-WIN" />
+  <culture-info current-culture="en-US" current-uiculture="en-US" />
+  <test-suite type="Assembly" name="C:\Prj\SkypeBot\SkypeBot.Tests\bin\debug\SkypeBot.Tests.dll" executed="True" result="Success" success="True" time="3.641" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="SkypeBot" executed="True" result="Success" success="True" time="3.622" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="3.622" asserts="0">
+            <results>
+              <test-suite type="TestFixture" name="BotTests" description="DESCRIPTION" executed="True" result="Success" success="True" time="3.619" asserts="0">
+                <categories>
+                  <category name="CATEGORY" />
+                </categories>
+                <results>
+                  <test-case name="SkypeBot.Tests.BotTests.ProcessCommand_EmptyString_ReturnsCouldntFindAnyRelatedCommands" executed="True" result="Success" success="True" time="0.457" asserts="1" />
+                  <test-case name="SkypeBot.Tests.BotTests.ProcessCommand_Scriptcs_OutputIsNotShownOnScreen" executed="True" result="Success" success="True" time="3.139" asserts="1" />
+                  <test-case name="SkypeBot.Tests.BotTests.ProcessCommand_ScriptcsFileNotFound_ReturnsCouldntFindScriptcsFile" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>
