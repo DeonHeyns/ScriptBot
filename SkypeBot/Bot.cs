@@ -98,11 +98,8 @@ namespace SkypeBot
             catch (DirectoryNotFoundException) { }
             
             _catalog.Catalogs.Add(new AssemblyCatalog(typeof(SkypeBotEmptyCommand).Assembly));
-            
-            //Create the CompositionContainer with the parts in the catalog
             _container = new CompositionContainer(_catalog);
 
-            //Fill the imports of this object
             try
             {
                 _container.ComposeParts(this);
