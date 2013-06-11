@@ -9,20 +9,20 @@ def env_buildversion
 	bumper_version.to_s
 end
 
-task :default => [:compile, :test, :bump_build_number]
+task :default => [:compile, :test]
 
 desc 'Compile the solution'
 msbuild :compile do |msb|
 	msb.properties = { :configuration => config }
     msb.targets = [ :Clean, :Build ]
-    msb.solution = 'SkypeBot.sln'
+    msb.solution = 'ScriptBot.sln'
 end
 
 desc "NUnit Test Runner"
 nunit :test do |nunit|
 	nunit.options '/framework v4.0.30319'
 	nunit.command = "tools/nunit-console.exe"
-	nunit.assemblies "SkypeBot.Tests/bin/"+ config  +"/SkypeBot.Tests.dll"
+	nunit.assemblies "ScriptBot.Tests/bin/"+ config  +"/ScriptBot.Tests.dll"
 end
 
 desc "Increments the major version number for the project"

@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{4A8997F8-4C7F-45EF-92C0-5DC9C34C9D86}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptBot.Core", "ScriptBot.Core\ScriptBot.Core.csproj", "{8A6B0E91-A147-4FEB-8A4C-D4427A315D6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptBot.Skype", "ScriptBot.Skype\ScriptBot.Skype.csproj", "{F1493E86-66D7-4C91-88F7-AC3C93E214F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptBot.Plugins.ScriptCs", "ScriptBot.Plugins.ScriptCs\ScriptBot.Plugins.ScriptCs.csproj", "{CD2B136A-800B-4EF1-BD12-7D1FB8E5C0B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptBot.Tests", "ScriptBot.Tests\ScriptBot.Tests.csproj", "{6BFF55FA-9D82-4BA6-BDF8-5F33DCE2EB7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptBot", "ScriptBot\ScriptBot.csproj", "{A31948C5-306D-4662-8CB4-5311DAA4300B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A6B0E91-A147-4FEB-8A4C-D4427A315D6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A6B0E91-A147-4FEB-8A4C-D4427A315D6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A6B0E91-A147-4FEB-8A4C-D4427A315D6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A6B0E91-A147-4FEB-8A4C-D4427A315D6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1493E86-66D7-4C91-88F7-AC3C93E214F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1493E86-66D7-4C91-88F7-AC3C93E214F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1493E86-66D7-4C91-88F7-AC3C93E214F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1493E86-66D7-4C91-88F7-AC3C93E214F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD2B136A-800B-4EF1-BD12-7D1FB8E5C0B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD2B136A-800B-4EF1-BD12-7D1FB8E5C0B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD2B136A-800B-4EF1-BD12-7D1FB8E5C0B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD2B136A-800B-4EF1-BD12-7D1FB8E5C0B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BFF55FA-9D82-4BA6-BDF8-5F33DCE2EB7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BFF55FA-9D82-4BA6-BDF8-5F33DCE2EB7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BFF55FA-9D82-4BA6-BDF8-5F33DCE2EB7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BFF55FA-9D82-4BA6-BDF8-5F33DCE2EB7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A31948C5-306D-4662-8CB4-5311DAA4300B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A31948C5-306D-4662-8CB4-5311DAA4300B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A31948C5-306D-4662-8CB4-5311DAA4300B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A31948C5-306D-4662-8CB4-5311DAA4300B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
