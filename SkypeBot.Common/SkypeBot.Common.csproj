@@ -84,7 +84,7 @@
     <Compile Include="Commands\SkypeBotEmptyCommand.cs" />
     <Compile Include="SkypeBotExportAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Commands\SkypeBotScriptcsCommand.cs" />
+    <Compile Include="Commands\SkypeBotScriptCsCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

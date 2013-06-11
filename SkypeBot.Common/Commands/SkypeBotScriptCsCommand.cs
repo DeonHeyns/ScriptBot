@@ -90,8 +90,8 @@ namespace SkypeBot.Common.Commands
         private readonly IScriptExecutor _scriptExecutor;
 
         public ExecuteScriptCs(CL.ILog logger, ScriptCs.IFileSystem fileSystem,
-                                IPackageAssemblyResolver packageAssemblyResolver, IPackageInstaller packageInstaller,
-                                IScriptPackResolver scriptPackResolver, IScriptExecutor scriptExecutor)
+                               IPackageAssemblyResolver packageAssemblyResolver, IPackageInstaller packageInstaller,
+                               IScriptPackResolver scriptPackResolver, IScriptExecutor scriptExecutor)
         {
             this._logger = logger;
             this._fileSystem = fileSystem;
@@ -111,18 +111,18 @@ namespace SkypeBot.Common.Commands
                 Environment.CurrentDirectory = Path.GetDirectoryName(scriptPath);
 
                 // prepare NuGet dependencies, download them if required
-//                var nuGetReferences = PreparePackages(
-//                                                scriptPath,
-//                                                _fileSystem, _packageAssemblyResolver,
-//                                                _packageInstaller, _logger.Info);
+                var nuGetReferences = PreparePackages(
+                    scriptPath,
+                    _fileSystem, _packageAssemblyResolver,
+                    _packageInstaller, _logger.Info);
 
                 // get script packs: not fully tested yet        
                 var scriptPacks = _scriptPackResolver.GetPacks();
 
-                _scriptExecutor.Initialize(new[] { scriptPath }, scriptPacks);
+                _scriptExecutor.Initialize(Enumerable.Empty<string>(), scriptPacks);
                 // execute script from file
                 var result = _scriptExecutor.Execute(scriptPath, args);
-                
+
             }
             finally
             {
@@ -132,9 +132,9 @@ namespace SkypeBot.Common.Commands
         }
 
         private static IEnumerable<string> PreparePackages(
-                                string scriptPath,
-                                ScriptCs.IFileSystem fileSystem, IPackageAssemblyResolver packageAssemblyResolver,
-                                IPackageInstaller packageInstaller, Action<string> outputCallback = null)
+            string scriptPath,
+            ScriptCs.IFileSystem fileSystem, IPackageAssemblyResolver packageAssemblyResolver,
+            IPackageInstaller packageInstaller, Action<string> outputCallback = null)
         {
             var workingDirectory = Path.GetDirectoryName(scriptPath);
             var binDirectory = Path.Combine(workingDirectory, ScriptCs.Constants.BinFolder);
@@ -142,8 +142,8 @@ namespace SkypeBot.Common.Commands
             var packages = packageAssemblyResolver.GetPackages(workingDirectory);
 
             packageInstaller.InstallPackages(
-                                packages,
-                                allowPreRelease: true, packageInstalled: outputCallback);
+                packages,
+                allowPreRelease: true, packageInstalled: outputCallback);
 
             // current implementeation of RoslynCTP required dependencies to be in 'bin' folder
             if (!fileSystem.DirectoryExists(binDirectory))
@@ -153,7 +153,7 @@ namespace SkypeBot.Common.Commands
 
             // copy dependencies one by one from 'packages' to 'bin'
             foreach (var assemblyName
-                        in packageAssemblyResolver.GetAssemblyNames(workingDirectory, outputCallback))
+                in packageAssemblyResolver.GetAssemblyNames(workingDirectory, outputCallback))
             {
                 var assemblyFileName = Path.GetFileName(assemblyName);
                 var destFile = Path.Combine(binDirectory, assemblyFileName);
@@ -180,7 +180,7 @@ namespace SkypeBot.Common.Commands
         }
     }
 
-    internal class ScriptModule : Autofac.Module
+    internal class ScriptModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
@@ -190,16 +190,16 @@ namespace SkypeBot.Common.Commands
                 .SingleInstance();
 
             builder
-                .RegisterType<CLS.ConsoleOutLogger>()
+                .RegisterType<ScriptCsLogger>()
                 .As<CL.ILog>()
                 .SingleInstance()
-                .WithParameter("logName", @"Custom ScriptCs from C#")
-                .WithParameter("logLevel", CL.LogLevel.All)
-                .WithParameter("showLevel", true)
-                .WithParameter("showDateTime", true)
-                .WithParameter("showLogName", true)
-                .WithParameter("dateTimeFormat", @"yyyy-mm-dd hh:mm:ss");
-
+                            .WithParameter("useTraceSource", true)
+                            .WithParameter("logName", @"Custom ScriptCs from C#")
+                            .WithParameter("logLevel", CL.LogLevel.All)
+                            .WithParameter("showLevel", true)
+                            .WithParameter("showDateTime", true)
+                            .WithParameter("showLogName", true)
+                            .WithParameter("dateTimeFormat", @"yyyy-mm-dd hh:mm:ss");
             builder
                 .RegisterType<FilePreProcessor>()
                 .As<IFilePreProcessor>()
@@ -250,6 +250,21 @@ namespace SkypeBot.Common.Commands
 
             builder
                 .RegisterType<ExecuteScriptCs>();
+        }
+    }
+
+    internal class ScriptCsLogger : CLS.TraceLogger
+    {
+        public ScriptCsLogger(bool useTraceSource, string logName, CL.LogLevel logLevel, bool showLevel,
+                              bool showDateTime, bool showLogName, string dateTimeFormat)
+            : base(useTraceSource, logName, logLevel, showLevel, showDateTime, showLogName,dateTimeFormat)
+        {
+            
+        }
+
+        public override void Info(object message)
+        {
+            base.Info(message);
         }
     }
 }
