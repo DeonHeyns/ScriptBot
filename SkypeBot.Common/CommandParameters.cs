@@ -16,7 +16,7 @@ namespace SkypeBot.Common
     public partial class CommandParameters
     {
         public const string Empty = "";
-        public const string Scriptcs = "scriptcs";
+        public const string ScriptCs = "scriptcs";
         public const string Date = "date";
         public const string Time = "time";
         public const string DateTime = "datetime";

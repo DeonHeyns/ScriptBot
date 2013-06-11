@@ -48,11 +48,11 @@ namespace SkypeBot
             _skype.Attach(7, false);
             _skype.MessageStatus += (message, status) =>
             {
-                if (message.Body.IndexOf(Trigger, StringComparison.Ordinal) == 0)//&& status == TChatMessageStatus.cmsReceived)
+                if (message.Body.IndexOf(Trigger, StringComparison.Ordinal) == 0 && status == TChatMessageStatus.cmsReceived)
                 {
                     IChat ichat = _skype.Chat[message.Chat.Name];
                     var msg = message.Body.ToLowerInvariant();
-                    ichat.SendMessage(string.Format("Bot finished:{0} {1}", Environment.NewLine, HandleCommand(msg)));
+                    ichat.SendMessage(string.Format("Bot says:{0} {1}", Environment.NewLine, HandleCommand(msg)));
                 }
             };
         }

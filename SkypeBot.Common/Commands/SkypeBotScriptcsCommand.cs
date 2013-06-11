@@ -22,21 +22,15 @@ using System.Text;
 namespace SkypeBot.Common.Commands
 {
     [SkypeBotExport]
-    [ExportMetadata("Command", CommandParameters.Scriptcs)]
-    public class SkypeBotScriptcsCommand : ISkypeBotCommand
+    [ExportMetadata("Command", CommandParameters.ScriptCs)]
+    public class SkypeBotScriptCsCommand : ISkypeBotCommand
     {
         private readonly string _scriptcs;
         private readonly string _csxFolder;
-        public SkypeBotScriptcsCommand()
+
+        public SkypeBotScriptCsCommand()
         {
-            _scriptcs = Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), 
-                "scriptcs",
-                "scriptcs.exe");
-
-            if (!Directory.Exists(Path.GetDirectoryName(_scriptcs)))
-                _scriptcs = ConfigurationManager.AppSettings["SkypeBotScriptcsCommand:ScriptCsExePath"];
-
+            _scriptcs = LocateScriptCsExe();
             _csxFolder = Path.Combine(Environment.CurrentDirectory, ConfigurationManager.AppSettings["SkypeBotScriptcsCommand:ScriptCsScriptsPath"]);
         }
 
@@ -73,6 +67,26 @@ namespace SkypeBot.Common.Commands
             }
 
             return results.ToString();
+        }
+
+        private static string LocateScriptCsExe()
+        {
+            const string filename = "scriptcs.exe";
+            var path = Environment.GetEnvironmentVariable("path");
+            if (path != null)
+            {
+                var folders = path.Split(';');
+                foreach (var folder in folders)
+                {
+                    var filepath = ((folder.EndsWith(@"\")) ? folder : folder + @"\") + filename;
+                    if (File.Exists(filepath))
+                    {
+                        return filepath;
+                    }
+                }
+            }
+
+            return ConfigurationManager.AppSettings["SkypeBotScriptcsCommand:ScriptCsExePath"] ?? string.Empty;
         }
     }
 }
