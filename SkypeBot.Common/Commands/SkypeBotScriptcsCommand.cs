@@ -76,14 +76,9 @@ namespace SkypeBot.Common.Commands
             if (path != null)
             {
                 var folders = path.Split(';');
-                foreach (var folder in folders)
-                {
-                    var filepath = ((folder.EndsWith(@"\")) ? folder : folder + @"\") + filename;
-                    if (File.Exists(filepath))
-                    {
-                        return filepath;
-                    }
-                }
+                var scriptcsFilePath = folders.Select(folder => Path.Combine(folder, filename)).FirstOrDefault(File.Exists);
+                if(!string.IsNullOrWhiteSpace(scriptcsFilePath))
+                    return scriptcsFilePath;
             }
 
             return ConfigurationManager.AppSettings["SkypeBotScriptcsCommand:ScriptCsExePath"] ?? string.Empty;
